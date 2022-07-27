@@ -12,7 +12,9 @@ import io.appium.java_client.pagefactory_tests.widget.tests.DefaultStubWidget;
 import io.appium.java_client.pagefactory_tests.widget.tests.WidgetTest;
 import io.appium.java_client.pagefactory_tests.widget.tests.android.DefaultAndroidWidget;
 import io.appium.java_client.pagefactory_tests.widget.tests.windows.DefaultWindowsWidget;
+import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -61,8 +63,9 @@ public class CombinedWidgetTest extends WidgetTest {
         this.widgetClass = widgetClass;
     }
 
-    @Override
-    public void checkThatWidgetsAreCreatedCorrectly() {
+    @ParameterizedTest
+    @MethodSource("data")
+    public void checkThatWidgetsAreCreatedCorrectly(AbstractApp app, WebDriver driver, Class<?> widgetClass) {
         assertThat("Expected widget class was " + widgetClass.getName(),
                 app.getWidget().getSubWidget().getSelfReference().getClass(),
                 equalTo(widgetClass));
@@ -75,6 +78,11 @@ public class CombinedWidgetTest extends WidgetTest {
 
         assertThat(classes,
                 contains(widgetClass, widgetClass, widgetClass, widgetClass));
+    }
+
+    @Override
+    public void checkThatWidgetsAreCreatedCorrectly() {
+
     }
 
     public static class CombinedWidget extends DefaultStubWidget {
