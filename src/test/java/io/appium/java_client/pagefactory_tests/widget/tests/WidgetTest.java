@@ -4,7 +4,6 @@ import static org.openqa.selenium.support.PageFactory.initElements;
 
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.junit.jupiter.api.Test;
-
 import org.openqa.selenium.WebDriver;
 
 public abstract class WidgetTest {
