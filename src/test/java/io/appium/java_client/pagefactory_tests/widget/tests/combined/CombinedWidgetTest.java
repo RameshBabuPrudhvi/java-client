@@ -26,8 +26,6 @@ import java.util.stream.Stream;
 @SuppressWarnings({"unchecked", "unused"})
 public class CombinedWidgetTest extends WidgetTest {
 
-    private final Class<?> widgetClass;
-
     /**
      * Test data generation.
      *
@@ -58,9 +56,8 @@ public class CombinedWidgetTest extends WidgetTest {
         );
     }
 
-    public CombinedWidgetTest(AbstractApp app, WebDriver driver, Class<?> widgetClass) {
+    public CombinedWidgetTest(AbstractApp app, WebDriver driver) {
         super(app, driver);
-        this.widgetClass = widgetClass;
     }
 
     @ParameterizedTest
@@ -82,7 +79,7 @@ public class CombinedWidgetTest extends WidgetTest {
 
     @Override
     public void checkThatWidgetsAreCreatedCorrectly() {
-
+        //Do Nothing
     }
 
     public static class CombinedWidget extends DefaultStubWidget {

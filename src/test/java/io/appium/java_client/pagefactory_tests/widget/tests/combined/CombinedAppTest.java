@@ -24,8 +24,6 @@ import java.util.stream.Stream;
 @SuppressWarnings({"unused", "unchecked"})
 public class CombinedAppTest extends WidgetTest {
 
-    private final Class<?> widgetClass;
-
     /**
      * Test data generation.
      *
@@ -53,14 +51,13 @@ public class CombinedAppTest extends WidgetTest {
         );
     }
 
-    public CombinedAppTest(AbstractApp app, WebDriver driver, Class<? extends DefaultStubWidget> widgetClass) {
+    public CombinedAppTest(AbstractApp app, WebDriver driver) {
         super(app, driver);
-        this.widgetClass = widgetClass;
     }
 
     @ParameterizedTest
     @MethodSource("data")
-    public void checkThatWidgetsAreCreatedCorrectly(AbstractApp app, WebDriver driver, Class<?> widgetClass) {
+    public void checkThatWidgetsAreCreatedCorrectly(AbstractApp app, WebDriver driver, Class<? extends DefaultStubWidget> widgetClass) {
         assertThat("Expected widget class was " + widgetClass.getName(),
                 app.getWidget().getSelfReference().getClass(),
                 equalTo(widgetClass));
@@ -74,7 +71,7 @@ public class CombinedAppTest extends WidgetTest {
 
     @Override
     public void checkThatWidgetsAreCreatedCorrectly() {
-
+        //Do Nothing
     }
 
     public static class CombinedApp implements AbstractApp {
